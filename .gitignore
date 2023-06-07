@@ -1,0 +1,14 @@
+# Ignorer l'entièreté des fichiers/dossiers
+/**/*
+
+# Ne pas ignorer les fichiers suivant
+!/.gitignore
+!/api.py
+!/graphe.py
+!/main.py
+!/puissance4.py
+!/puissance4x.py
+!/puissance4_error.py
+!/README.md
+!/tests.py
+!/analyse.py

@@ -488,28 +488,3 @@ def make_grid(table_pions):
     res += make_bottom_line()+'\n'
 
     return res
-
-if __name__ == '__main__':
-    a = Puissance4([{'nom': 'kiler2', 'pions': [[1, 1], [2, 2]]},
-    {'nom': 'robot','pions': [[2, 1], [3, 1]]}])
-    print(a)
-    a.placer_un_pion(1, 1)
-    a.placer_un_pion(1, 1)
-    a.placer_un_pion(2, 1)
-    print(a)
-    print(a.état)
-
-    a.placer_un_pion(2, 1)
-    a.placer_un_pion(2, 1)
-
-    a.placer_un_pion(1,3)
-    a.placer_un_pion(1,3)
-    a.placer_un_pion(1,4)
-    a.placer_un_pion(2,4)
-    a.placer_un_pion(1,4)
-    a.placer_un_pion(1,4)
-    a.placer_un_pion(2,4)
-    print(a)
-    print(a.état)
-    print(a.est_egalite())
-    print(a.est_terminée())

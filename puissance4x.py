@@ -130,8 +130,8 @@ class Puissance4X(Puissance4):
         for pion in pions_j2:
             self.afficher_pion(pion, 2)
         if self.jeu:
-                self.formater_légende_graphique()
-                self.afficher_victoire()
+            self.formater_légende_graphique()
+            self.afficher_victoire()
 
 
     def formater_légende_graphique(self):
@@ -188,8 +188,8 @@ class Puissance4X(Puissance4):
         while not self.coup:
             self.fen.update()
         return self.coup
-    
-    def écrire(self, mot, a, b, c, d, color):
+
+    def écrire(self, mot, pos_x, pos_y, mot_x, mot_y, color):
         '''Ecrit un mot dans un rectangle.
 
         Args:
@@ -203,7 +203,7 @@ class Puissance4X(Puissance4):
         largeur_rectangle = 200
         hauteur_rectangle = 100
         self.maj.penup()
-        self.maj.goto(a, b)
+        self.maj.goto(pos_x, pos_y)
         self.maj.pendown()
         self.maj.pensize(5)
         self.maj.color(color)
@@ -213,11 +213,11 @@ class Puissance4X(Puissance4):
             self.maj.forward(hauteur_rectangle)
             self.maj.left(90)
         self.maj.penup()
-        self.maj.goto(c, d)
+        self.maj.goto(mot_x, mot_y)
         self.maj.color(color)
         self.maj.write(mot, align="center", font=("Arial", 20, "normal"))
         self.maj.penup()
-        self.fen.update()   
+        self.fen.update()
 
 
     def restart(self):
@@ -237,15 +237,17 @@ class Puissance4X(Puissance4):
         self.coup = None
         while self.jeu == 0:
             self.attente_coup()
-            if self.coup[0] > -350 and self.coup[0] < -150 and self.coup[1] > 100 and self.coup[1] < 200:
+            if (self.coup[0] > -350 and self.coup[0] < -150 and
+                self.coup[1] > 100 and self.coup[1] < 200):
                 self.jeu = 1
                 self.fen.clear()
                 return True
 
-            elif self.coup[0] > 110 and self.coup[0] < 310 and self.coup[1] > 100 and self.coup[1] < 200:
+            elif (self.coup[0] > 110 and self.coup[0] < 310 and
+                  self.coup[1] > 100 and self.coup[1] < 200):
                 self.jeu = 1
                 self.fen.bye()
                 return False
-            
+
             else:
                 self.coup = None

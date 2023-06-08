@@ -1,15 +1,19 @@
-from puissance4 import Puissance4
+''' Jeu Puissance 4
+Ce programme permet de jouer au jeu Puissance 4.
+'''
 from puissance4x import Puissance4X
-from analyse import analyser_commande  
+from analyse import analyser_commande
+from puissance4 import Puissance4
+
 
 
 if __name__ == "__main__":
     args = analyser_commande()
     if args.graphique:
         print("Mode graphique")
-        flag = True
+        FLAG = True
         jeu = Puissance4X(['Joueur 1', 'Joueur 2'])
-        while flag:
+        while FLAG:
             jeu = Puissance4X(['Joueur 1', 'Joueur 2'], jeu.tab)
             jeu.draw_grid()
 
@@ -19,14 +23,14 @@ if __name__ == "__main__":
                 jeu.placer_un_pion(jeu.joueur, coup)
 
             jeu.gestion_de_jeu(jeu.joueur)
-            flag = jeu.restart()
+            FLAG = jeu.restart()
             print("Partie terminée")
 
     elif args.normal:
         print("Mode normal")
-        flag = True
+        FLAG = True
         jeu = Puissance4(['Joueur 1', 'Joueur 2'])
-        while flag:
+        while FLAG:
             jeu = Puissance4(['Joueur 1', 'Joueur 2'], jeu.tab)
 
             while not jeu.est_terminée() and not jeu.est_egalite():
@@ -36,7 +40,7 @@ if __name__ == "__main__":
                 jeu.placer_un_pion(jeu.joueur, coup)
                 print(jeu.stockage_pions[5,4])
             jeu.gestion_de_jeu(jeu.joueur)
-            flag = jeu.restart()
+            FLAG = jeu.restart()
             print("Partie terminée")
 
     print(f"\nScore : Joueur 1 : {jeu.tab[1]} / Joueur 2 : {jeu.tab[2]} / Égalité : {jeu.tab[0]}")

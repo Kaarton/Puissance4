@@ -1,3 +1,7 @@
+"""Module pour les erreurs du jeu Puissance4.
+
+Ce module contient la classe Puissance4 qui permet de gérer les erreurs du jeu Puissance4."""
+
 class Puissance4_Error(Exception):
     """Classe d'erreur pour le jeu Puissance4.
 
@@ -19,3 +23,4 @@ class Puissance4_Error(Exception):
             str: Message d'erreur
         """
         return self.message
+    

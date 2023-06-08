@@ -1,7 +1,11 @@
+"""Module de la classe Puissance4
 
-from puissance4_error import Puissance4_Error
+Classes:
+    * Puissance4 - Classe pour encapsuler le jeu Puissance4.
+"""
 
 from copy import deepcopy
+from puissance4_error import Puissance4_Error
 
 class Puissance4:
     """Classe pour représenter le jeu Puissance 4.
@@ -9,7 +13,8 @@ class Puissance4:
     Attributes:
         * état (dict) - État actuel du jeu.
         * joueur (int) - Numéro du joueur dont c'est le tour.
-        * tab (list) - Tableau contenant le nombre d'égalités, de victoires du joueur 1 et de victoires du joueur 2.
+        * tab (list) - Tableau contenant le nombre d'égalités,
+          de victoires du joueur 1 et de victoires du joueur 2.
     """
     def __init__(self, joueurs, tab=None):
         """Constructeur de la classe Puissance 4.
@@ -18,13 +23,14 @@ class Puissance4:
         Args:
             joueurs (List): un itérable de deux joueurs dont le premier est toujours celui qui
                 débute la partie.
-            tab (List, optionnel): Un tableau de 3 entiers contenant respectivement le nombre d'égalités,
-                le nombre de victoires du joueur 1 et le nombre de victoires du joueur 2.
+            tab (List, optionnel): Un tableau de 3 entiers contenant respectivement 
+            le nombre d'égalités, le nombre de victoires du joueur 1 et
+            le nombre de victoires du joueur 2.
         """
         self.état = deepcopy(self.vérification(joueurs))
         self.actualiser()
         self.joueur = 1
-        if tab == None:
+        if tab is None:
             self.tab = [0, 0, 0]
         else:
             self.tab = tab
@@ -84,7 +90,7 @@ class Puissance4:
         etat = {'joueurs': [joueur1, joueur2]}
 
         return etat
-        
+
     def état_courant(self):
         """Produire l'état actuel du jeu.
 
@@ -95,7 +101,7 @@ class Puissance4:
                   Notez que les positions doivent être sous forme de liste [x, y] uniquement.
         """
         return deepcopy(self.état)
-    
+
     def est_terminée(self):
         """Déterminer si la partie est terminée.
 
@@ -132,15 +138,15 @@ class Puissance4:
                     == self.stockage_pions[2 - col, row]
                     == 'x'
                     ):
-                        return True
+                    return True
                 if (
                     self.stockage_pions[5 - col, row] == self.stockage_pions[4 - col, row]
                     == self.stockage_pions[3 - col, row]
                     == self.stockage_pions[2 - col, row]
                     == 'o'
                     ):
-                        return True
-                
+                    return True
+
         # Vérification des diagonales descendantes
         for col in range(3, rows):
             for row in range(cols - 3):
@@ -168,16 +174,16 @@ class Puissance4:
                     == self.stockage_pions[col + 3, row + 3]
                     == 'x'
                 ):
-                        return True
+                    return True
                 if (
                     self.stockage_pions[col, row] == self.stockage_pions[col + 1 , row + 1]
                     == self.stockage_pions[col + 2, row + 2]
                     == self.stockage_pions[col + 3, row + 3]
                     == 'o'
                 ):
-                        return True
+                    return True
         return False
-    
+
 
     def placer_un_pion(self, joueur, position):
         """Placer un pion.
@@ -201,11 +207,11 @@ class Puissance4:
         #Vérifier si la position est valide
         if position < 1 or position > 7:
             raise Puissance4_Error("La position est invalide.")
-        
+
         #Vérifier si la collone est pleine
         if self.stockage_pions[0, position - 1] != '.':
             raise Puissance4_Error("La collone est pleine.")
-        
+
         for i in range(5, -1, -1):
             if self.stockage_pions[i, position - 1] == '.':
                 pos = [position, 6 - i]
@@ -253,7 +259,7 @@ class Puissance4:
         #Retourner le damier
         return make_grid(self.stockage_pions)
 
-    
+
     def récupérer_le_coup(self, joueur):
         """Récupérer le coup.
 
@@ -277,11 +283,11 @@ class Puissance4:
 
         if position not in ('1', '2', '3', '4', '5', '6', '7'):
             raise Puissance4_Error("La collone sélectionnée est invalide.")
-        
+
         position = int(position)
 
         return position
-    
+
     def est_egalite(self):
         """Déterminer si la partie est nulle (égalité).
 
@@ -301,8 +307,8 @@ class Puissance4:
             str: Une représentation en chaîne de caractères du jeu.
         """
         return self.formater_damier()
-    
-    def gestion_de_jeu(self, x):
+
+    def gestion_de_jeu(self, joueur):
         """Gestion de jeu.
 
         Gérer le jeu en fonction de l'état du jeu.
@@ -315,10 +321,10 @@ class Puissance4:
             self.tab[0] += 1
             print("    Égalité")
         else:
-            self.tab[x%2 + 1] += 1
-            print(f"    Le gagnant est {self.état['joueurs'][x%2]['nom']}")
+            self.tab[joueur%2 + 1] += 1
+            print(f"    Le gagnant est {self.état['joueurs'][joueur%2]['nom']}")
 
-    
+
     def restart(self):
         """Redémarrer le jeu.
 
@@ -445,7 +451,7 @@ def make_data_line(ligne_pion):
         return res
 
     # Pour chaque élément de la ligne
-    for i, j in enumerate(ligne_pion[:-1]):
+    for j in ligne_pion[:-1]:
 
         # Ajouter les valeurs de chaque ligne des tableaux joueurs et murs
         res += f"{j}   "

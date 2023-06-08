@@ -150,7 +150,6 @@ class Puissance4:
                     == self.stockage_pions[col - 3, row + 3]
                     == 'x'
                 ):
-                    print('diag ascendante')
                     return True
                 if (
                     self.stockage_pions[col, row] == self.stockage_pions[col - 1, row + 1]
@@ -158,7 +157,6 @@ class Puissance4:
                     == self.stockage_pions[col - 3, row + 3]
                     == 'o'
                 ):
-                    print('diag ascendante')
                     return True
 
         # Vérification des diagonales ascendantes
@@ -170,7 +168,6 @@ class Puissance4:
                     == self.stockage_pions[col + 3, row + 3]
                     == 'x'
                 ):
-                        print('diag descendante')
                         return True
                 if (
                     self.stockage_pions[col, row] == self.stockage_pions[col + 1 , row + 1]
@@ -178,7 +175,6 @@ class Puissance4:
                     == self.stockage_pions[col + 3, row + 3]
                     == 'o'
                 ):
-                        print('diag descendante')
                         return True
         return False
     
